@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.post('/login', Users.login);
 
 app.post('/user', Users.create);
+app.get('/user/:id', Tasks.getTaskByUser);
 
 app.post('/task', validateJWT, Tasks.create);
 
