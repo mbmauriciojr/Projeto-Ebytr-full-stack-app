@@ -1,28 +1,33 @@
 const jwt = require('jsonwebtoken');
-const model = require('../../models/userModel');
 
-const secret = process.env.SECRET_TOKEN;
+const SECRET = process.env.SECRET_TOKEN;
 
-module.exports = async (req, res, next) => {
+const jwtConfig = {
+  expiresIn: '1d',
+  algorithm: 'HS256',
+};
+
+const createToken = (userData) => jwt.sign({ data: userData.dataValues }, SECRET, jwtConfig);
+
+const verifyToken = async (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ message: 'missing auth token' });
+    return res.status(401).json({ message: 'Token not found' });
   }
 
   try {
-    const decoded = jwt.verify(token, secret);
+    const decoded = jwt.verify(token, SECRET);
 
-    const user = await model.findByEmail(decoded.data.email);
-
-    if (!user) {
-      return res.status(401).json({ message: 'jwt malformed' });
-    }
-
-    req.user = user;
+    req.user = decoded;
 
     return next();
   } catch (err) {
-    return res.status(401).json({ message: err.message });
+    return res.status(401).json({ message: 'Expired or invalid token' });
   }
+};
+
+module.exports = {
+  createToken,
+  verifyToken,
 };
