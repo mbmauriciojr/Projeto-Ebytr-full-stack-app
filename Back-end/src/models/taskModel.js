@@ -16,7 +16,6 @@ const create = async (body, userId) => {
 };
 
 const getByUser = async (userId) => {
-  if (!ObjectId.isValid(userId)) return { status: 404, message: 'Invalid user' };
   const db = await connection();
 
   const getTask = await db.collection('tasks').findOne({ userId: new ObjectId(userId) });
