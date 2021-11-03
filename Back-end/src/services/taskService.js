@@ -27,11 +27,22 @@ const update = async (body, id) => {
 
   const updateTask = await Task.update(body, id);
 
+  if (!updateTask) return { status: 404, message: 'Task not found' };
+
   return { status: 200, data: updateTask };
+};
+
+const deleteTask = async (id) => {
+  const deletedTask = await Task.deleteTask(id);
+
+  if (!deletedTask) return { status: 404, message: 'Task not found' };
+
+  return { status: 204, data: 'Task deleted with success' };
 };
 
 module.exports = {
   create,
   getTaskByUser,
   update,
+  deleteTask,
 };
