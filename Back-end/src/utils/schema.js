@@ -8,7 +8,7 @@ const User = Joi.object({
 
 const Task = Joi.object({
   taskName: Joi.string().min(8).required(),
-  description: Joi.string().email().required(),
+  description: Joi.string().required(),
   status: Joi.string().required(),
 });
 
