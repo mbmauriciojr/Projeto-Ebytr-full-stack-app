@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const connection = require('./connection');
 
 const create = async (body, userId) => {
@@ -14,6 +15,18 @@ const create = async (body, userId) => {
   return { _id: createTask.insertedId, ...body, userId };
 };
 
+const getByUser = async (userId) => {
+  if (!ObjectId.isValid(userId)) return { status: 404, message: 'Invalid user' };
+  const db = await connection();
+
+  const getTask = await db.collection('tasks').findOne({ userId: new ObjectId(userId) });
+
+  if (!getTask) return { status: 404, message: 'User does not exist' };
+
+  return { status: 200, data: getTask };
+};
+
 module.exports = {
   create,
+  getByUser,
 };
