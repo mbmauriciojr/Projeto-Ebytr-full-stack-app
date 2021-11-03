@@ -1,9 +1,11 @@
 const Task = require('../services/taskService');
 
 const create = async (req, res) => {
-  const { id } = req.user.data;
+  const { _id } = req.user.data;
 
-  const { status, data } = await Task.create(req.body, id);
+  const { status, data, message } = await Task.create(req.body, _id);
+
+  if (message) return res.status(status).json({ message });
 
   return res.status(status).json(data);
 };
