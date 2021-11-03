@@ -18,10 +18,20 @@ const getTaskByUser = async (userId) => {
 
   const getTask = await Task.getByUser(userId);
 
-  return { status: 201, data: getTask };
+  return { status: 200, data: getTask };
+};
+
+const update = async (body, id) => {
+  const { error } = Schema.Task.validate(body);
+  if (error) return { status: 400, message: error.details[0].message };
+
+  const updateTask = await Task.update(body, id);
+
+  return { status: 200, data: updateTask };
 };
 
 module.exports = {
   create,
   getTaskByUser,
+  update,
 };
