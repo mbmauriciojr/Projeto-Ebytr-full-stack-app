@@ -6,6 +6,13 @@ const User = Joi.object({
   password: Joi.string().length(8).required(),
 });
 
+const Task = Joi.object({
+  taskName: Joi.string().min(8).required(),
+  description: Joi.string().email().required(),
+  status: Joi.string().required(),
+});
+
 module.exports = {
   User,
+  Task,
 };
