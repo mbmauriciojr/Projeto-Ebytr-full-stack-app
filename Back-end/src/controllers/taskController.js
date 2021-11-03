@@ -11,9 +11,9 @@ const create = async (req, res) => {
 };
 
 const getTaskByUser = async (req, res) => {
-  const { _id } = req.user.data;
+  const { id } = req.params;
 
-  const { status, data, message } = await Task.getTaskByUser(_id);
+  const { status, data, message } = await Task.getTaskByUser(id);
 
   if (message) return res.status(status).json({ message });
 
