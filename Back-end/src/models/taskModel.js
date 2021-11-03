@@ -31,13 +31,24 @@ const update = async (body, id) => {
 
   const updatedTask = await db.collection('tasks').findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { ...body, updated: new Date() } });
 
-  if (!updatedTask) return { status: 404, message: 'Task not found' };
+  if (!updatedTask) return null;
 
   return updatedTask;
+};
+
+const deleteTask = async (id) => {
+  const db = await connection();
+
+  const deletedTask = await db.collection('tasks').deleteOne({ _id: ObjectId(id) });
+
+  if (deletedTask.deletedCount === 0) return null;
+
+  return true;
 };
 
 module.exports = {
   create,
   getByUser,
   update,
+  deleteTask,
 };
