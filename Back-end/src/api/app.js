@@ -9,9 +9,9 @@ const validateJWT = require('../middleware/auth/validateJWT').verifyToken;
 const app = express();
 app.use(bodyParser.json());
 
-app.post('/user', Users.create);
-
 app.post('/login', Users.login);
+
+app.post('/user', Users.create);
 
 app.post('/task', validateJWT, Tasks.create);
 
