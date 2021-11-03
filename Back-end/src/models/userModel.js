@@ -16,13 +16,7 @@ const create = async (body) => {
   return { _id: createTask.insertedId, body };
 };
 
-const login = async (body) => {
-  const { email, password } = body;
-
-  const checkEmail = await findEmail(email);
-};
-
 module.exports = {
   create,
-  login,
+  findEmail,
 };
