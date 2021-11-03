@@ -8,7 +8,8 @@ const create = async (body) => {
   if (error) return { status: 400, message: error.details[0].message };
 
   const newUser = await User.create(body);
-  const token = tokenJWT.createToken(newUser);
+
+  const token = tokenJWT.createToken(newUser.body);
 
   return { status: 201, data: { user: newUser, token } };
 };
