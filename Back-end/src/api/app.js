@@ -16,5 +16,6 @@ app.get('/user/:id', Tasks.getTaskByUser);
 
 app.post('/task', validateJWT, Tasks.create);
 app.put('/task/:id', validateJWT, Tasks.update);
+app.delete('/task/:id', validateJWT, Tasks.deleteTask);
 
 module.exports = app;
