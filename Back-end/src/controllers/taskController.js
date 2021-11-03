@@ -20,7 +20,17 @@ const getTaskByUser = async (req, res) => {
   return res.status(status).json(data);
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { status, data, message } = await Task.update(req.body, id);
+
+  if (message) return res.status(status).json({ message });
+
+  return res.status(status).json(data);
+};
+
 module.exports = {
   create,
   getTaskByUser,
+  update,
 };
