@@ -3,7 +3,7 @@ const connection = require('./connection');
 const findEmail = async (email) => {
   const db = await connection();
 
-  const checkEmail = await db.collection('users').findOne({ where: { email } });
+  const checkEmail = await db.collection('users').findOne({ email });
 
   return checkEmail;
 };

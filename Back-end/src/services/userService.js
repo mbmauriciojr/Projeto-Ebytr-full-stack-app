@@ -18,7 +18,7 @@ const login = async (body) => {
 
   const checkEmail = await User.findEmail(email);
 
-  if (!checkEmail || checkEmail.dataValues.password !== password) return { status: 400, message: 'Invalid fields' };
+  if (!checkEmail || checkEmail.password !== password) return { status: 400, message: 'Invalid fields' };
 
   const token = tokenJWT.createToken(checkEmail);
 
