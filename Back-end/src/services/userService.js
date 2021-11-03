@@ -13,6 +13,19 @@ const create = async (body) => {
   return { status: 201, data: { user: newUser, token } };
 };
 
+const login = async (body) => {
+  const { email, password } = body;
+
+  const checkEmail = await User.findEmail(email);
+
+  if (!checkEmail || checkEmail.dataValues.password !== password) return { status: 400, message: 'Invalid fields' };
+
+  const token = tokenJWT.createToken(checkEmail);
+
+  return { status: 200, data: { token } };
+};
+
 module.exports = {
   create,
+  login,
 };
