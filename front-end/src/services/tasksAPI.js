@@ -16,7 +16,6 @@ const userTasksFetch = async (id) => {
   try {
     const tasks = await axios.get(`http://localhost:5000/user/${id}`);
 
-    console.log(tasks.data);
     return tasks.data;
   } catch (error) {
     return console.error(error);
