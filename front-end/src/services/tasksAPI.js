@@ -14,11 +14,12 @@ const loginUser = async ({ email, password }) => {
 
 const userTasksFetch = async (id) => {
   try {
-    const tasks = await axios.get(`http://localhost:5000/${id}`);
+    const tasks = await axios.get(`http://localhost:5000/user/${id}`);
 
-    console.log(tasks);
+    console.log(tasks.data);
+    return tasks.data;
   } catch (error) {
-    console.error(error);
+    return console.error(error);
   }
 };
 
