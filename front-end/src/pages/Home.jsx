@@ -4,9 +4,10 @@ import ContextTasks from '../provider/ContextTasks';
 
 function Home() {
   const { user } = useContext(ContextTasks);
+  console.log(user);
   return (
     <>
-      <h1>{user.email}</h1>
+      <h1>{user.displayName}</h1>
     </>
   );
 }

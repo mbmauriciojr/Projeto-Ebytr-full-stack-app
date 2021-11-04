@@ -19,9 +19,9 @@ function Login() {
   };
 
   const handleClick = async () => {
-    const token = await loginUser(login);
+    const userInformation = await loginUser(login);
 
-    await setUser({ ...login, token });
+    await setUser({ ...userInformation });
     history.push('/home');
   };
 
