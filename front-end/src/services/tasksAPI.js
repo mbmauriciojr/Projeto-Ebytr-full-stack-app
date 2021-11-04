@@ -23,7 +23,6 @@ const userTasksFetch = async (id) => {
 };
 
 const createNewTask = async (taskName, description, statusTask, token) => {
-  console.log('Entrei no fetch', token);
   try {
     const task = await axios.post('http://localhost:5000/task',
       {
@@ -33,9 +32,9 @@ const createNewTask = async (taskName, description, statusTask, token) => {
       },
       { headers: { Authorization: token } });
 
-    console.log('Retorno', task);
+    return task;
   } catch (error) {
-    console.error(error);
+    return console.error(error);
   }
 };
 

@@ -32,6 +32,8 @@ function Home() {
     const { taskName, description, statusTask } = event.target;
 
     await createNewTask(taskName.value, description.value, statusTask.value, token);
+
+    fetchTasks(id);
   };
 
   return (
