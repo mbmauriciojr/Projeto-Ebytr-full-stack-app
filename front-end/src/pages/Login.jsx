@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { object } from 'prop-types';
+import { loginUser } from '../services/tasksAPI';
 
 function Login() {
+  const [login, setLogin] = useState({ email: '', password: '' });
+
+  const handleChange = ({ target: { name, value } }) => {
+    setLogin({
+      ...login,
+      [name]: value,
+    });
+  };
+
+  const handleClick = async () => {
+    await loginUser(login);
+  };
+
   return (
     <>
       <p>Tela de Login</p>
       <div id="login-form">
-        <input type="text" placeholder="email" name="email" />
-        <input type="text" placeholder="senha" name="password" />
-        <button type="submit">Entrar</button>
+        <input type="text" placeholder="email" name="email" onChange={handleChange} />
+        <input type="password" placeholder="senha" name="password" onChange={handleChange} />
+        <button type="submit" onClick={handleClick}>Entrar</button>
       </div>
       <div id="create-new-user">
         <p>
