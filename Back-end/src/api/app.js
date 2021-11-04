@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const Tasks = require('../controllers/taskController');
 const Users = require('../controllers/userController');
@@ -7,6 +8,8 @@ const Users = require('../controllers/userController');
 const validateJWT = require('../middleware/auth/validateJWT').verifyToken;
 
 const app = express();
+
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/login', Users.login);
