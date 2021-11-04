@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { object } from 'prop-types';
-import { userTasksFetch, createNewTask } from '../services/tasksAPI';
+import { userTasksFetch, createNewTask, deleteTask } from '../services/tasksAPI';
 import ContextTasks from '../provider/ContextTasks';
 
 function Home() {
@@ -16,10 +16,25 @@ function Home() {
     setTasks(userTasks);
   };
 
+  const deleteUserTask = async (event) => {
+    const idTask = event.target.id;
+
+    await deleteTask(idTask, token);
+
+    fetchTasks(id);
+  };
+
   const createTasks = () => (
     tasks.map((task) => {
       const { _id: idTask } = task;
-      return (<li key={idTask}>{task.taskName}</li>);
+      return (
+        <li key={idTask}>
+          {task.taskName}
+          <button type="button" id={idTask} onClick={deleteUserTask}>
+            Excluir
+          </button>
+        </li>
+      );
     })
   );
 
