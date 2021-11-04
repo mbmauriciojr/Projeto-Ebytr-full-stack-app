@@ -8,16 +8,21 @@ const loginUser = async ({ email, password }) => {
     });
     return user.data;
   } catch (error) {
-    return console.error(error);
+    return error;
   }
 };
 
-const teste = () => {
-  const a = 51;
-  return a;
+const userTasksFetch = async (id) => {
+  try {
+    const tasks = await axios.get(`http://localhost:5000/${id}`);
+
+    console.log(tasks);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export {
   loginUser,
-  teste,
+  userTasksFetch,
 };
