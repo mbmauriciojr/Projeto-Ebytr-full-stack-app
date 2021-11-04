@@ -29,9 +29,27 @@ function Home() {
   return (
     <>
       <h1>{user.displayName}</h1>
-      <ul>
-        { tasks.length === 0 ? null : createTasks() }
-      </ul>
+      <div className="tasks-user">
+        <ul className="tasks-list">
+          { tasks.length === 0 ? null : createTasks() }
+        </ul>
+
+        <h3>Adicionar uma nova tarefa</h3>
+
+        <form>
+          <input type="text" name="taskName" placeholder="Nome da tarefa" />
+          <input type="text" name="description" placeholder="Descrição da tarefa" />
+
+          <select id="cars" name="cars">
+            <option value="Feito">Feito</option>
+            <option value="Em desenvolvimento">Em desenvolvimento</option>
+            <option value="A fazer">A fazer</option>
+          </select>
+
+          <button type="button">Criar</button>
+        </form>
+
+      </div>
     </>
   );
 }
