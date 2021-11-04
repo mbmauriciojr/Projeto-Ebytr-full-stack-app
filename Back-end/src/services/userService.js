@@ -23,7 +23,7 @@ const login = async (body) => {
 
   const token = tokenJWT.createToken(checkEmail);
 
-  return { status: 200, data: { token } };
+  return { status: 200, data: { token, ...checkEmail } };
 };
 
 module.exports = {
