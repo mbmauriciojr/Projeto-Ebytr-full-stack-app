@@ -22,7 +22,20 @@ const userTasksFetch = async (id) => {
   }
 };
 
+const createTask = async (taskName, description, statusTask) => {
+  try {
+    await axios.get('http://localhost:5000/task', {
+      taskName,
+      description,
+      statusTask,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   loginUser,
   userTasksFetch,
+  createTask,
 };
