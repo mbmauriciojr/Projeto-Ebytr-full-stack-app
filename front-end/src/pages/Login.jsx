@@ -14,7 +14,8 @@ function Login() {
   };
 
   const handleClick = async () => {
-    await loginUser(login);
+    const token = await loginUser(login);
+    console.log(token);
   };
 
   return (
