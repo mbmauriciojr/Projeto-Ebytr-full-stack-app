@@ -18,7 +18,7 @@ const userTasksFetch = async (id) => {
 
     return tasks.data;
   } catch (error) {
-    return console.error(error);
+    return error;
   }
 };
 
@@ -34,7 +34,16 @@ const createNewTask = async (taskName, description, statusTask, token) => {
 
     return task;
   } catch (error) {
-    return console.error(error);
+    return error;
+  }
+};
+
+const deleteTask = async (id, token) => {
+  try {
+    const task = await axios.delete(`http://localhost:5000/task/${id}`, { headers: { Authorization: token } });
+    return task;
+  } catch (error) {
+    return error;
   }
 };
 
@@ -42,6 +51,7 @@ export {
   loginUser,
   userTasksFetch,
   createNewTask,
+  deleteTask,
 };
 
 // Consegui fazer funcionar apenas depois de entender as ordens de parâmetros do Axios,
