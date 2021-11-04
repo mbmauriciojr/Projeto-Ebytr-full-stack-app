@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { object } from 'prop-types';
 import { loginUser } from '../services/tasksAPI';
+import ContextTasks from '../provider/ContextTasks';
 
 function Login() {
   const [login, setLogin] = useState({ email: '', password: '' });
+
+  const { setUser } = useContext(ContextTasks);
 
   const handleChange = ({ target: { name, value } }) => {
     setLogin({
@@ -15,7 +18,8 @@ function Login() {
 
   const handleClick = async () => {
     const token = await loginUser(login);
-    console.log(token);
+
+    setUser({ ...login, token });
   };
 
   return (
