@@ -22,13 +22,18 @@ const userTasksFetch = async (id) => {
   }
 };
 
-const createTask = async (taskName, description, statusTask) => {
+const createNewTask = async (taskName, description, statusTask, token) => {
+  console.log('Entrei no fetch', token);
   try {
-    await axios.get('http://localhost:5000/task', {
-      taskName,
-      description,
-      statusTask,
-    });
+    const task = await axios.post('http://localhost:5000/task',
+      {
+        taskName,
+        description,
+        statusTask,
+      },
+      { headers: { Authorization: token } });
+
+    console.log('Retorno', task);
   } catch (error) {
     console.error(error);
   }
@@ -37,5 +42,8 @@ const createTask = async (taskName, description, statusTask) => {
 export {
   loginUser,
   userTasksFetch,
-  createTask,
+  createNewTask,
 };
+
+// Consegui fazer funcionar apenas depois de entender as ordens de parâmetros do Axios,
+// com ajuda desse link https://stackoverflow.com/questions/40988238/sending-the-bearer-token-with-axios
