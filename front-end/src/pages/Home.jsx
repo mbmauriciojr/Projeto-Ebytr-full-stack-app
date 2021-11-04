@@ -27,6 +27,12 @@ function Home() {
     fetchTasks(id);
   }, []);
 
+  const clearForm = () => {
+    const form = document.getElementById('task-form');
+
+    form.reset();
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { taskName, description, statusTask } = event.target;
@@ -34,6 +40,7 @@ function Home() {
     await createNewTask(taskName.value, description.value, statusTask.value, token);
 
     fetchTasks(id);
+    clearForm();
   };
 
   return (
@@ -46,7 +53,7 @@ function Home() {
 
         <h3>Adicionar uma nova tarefa</h3>
 
-        <form onSubmit={handleSubmit}>
+        <form id="task-form" onSubmit={handleSubmit}>
           <input type="text" name="taskName" placeholder="Nome da tarefa" />
           <input type="text" name="description" placeholder="Descrição da tarefa" />
 
