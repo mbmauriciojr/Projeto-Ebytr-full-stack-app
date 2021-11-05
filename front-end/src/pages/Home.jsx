@@ -73,9 +73,9 @@ function Home() {
           <input type="text" name="description" placeholder="Descrição da tarefa" />
 
           <select name="statusTask">
-            <option value="Feito">Feito</option>
-            <option value="Em desenvolvimento">Em desenvolvimento</option>
-            <option value="A fazer">A fazer</option>
+            <option value="Pronto">Pronto</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Pendente">Pendente</option>
           </select>
 
           <button type="submit">Criar</button>
