@@ -12,7 +12,7 @@ Foi criado uma aplicação em React.js onde simula uma tela de login, que caso s
 Será implementado ainda a opção de editar as tarefas existentes e a criação de novos usuários na parte do Front-end. Assim como algumas verificações na parte de login e criação de tarefas. Ainda sobre a parte do Front-end será implementado um CSS mais funcional e responsível. Em uma visão geral, pretendo fazer a criação de testes unitários para deixar ainda mais robusto esse projeto. E por final fazer o deploy do projeto para funcionar através do Heroku e sem a preocupação de instalar na máquina.
 
 ## Informações adicionais
-Para saber como instalar e funcionar por favor acesse cada diretório para encontrar como fazer funcionar cada parte. Lembrando que o Servidor é o primeiro que deve ser rodado!
+Para saber como instalar e fazer funcionar, por favor acesse cada diretório para encontrar como fazer funcionar cada parte. Lembrando que o Servidor (Back-end) é o primeiro que deve ser rodado!
 
 ## Agradecimento
 Muito obrigado por chegar até aqui e espero que goste!
